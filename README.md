@@ -85,14 +85,14 @@ python test.py
 | person_head    | (0.1, 0.3) | (1000, 500) |
 | vehicle        | (0.1, 0.3) | (1000, 500) |
 
-根据类别使用不同的分数阈值：
+根据类别使用不同的分数阈值和NMS阈值：
 
-| Class          | Thresh |
-| -------------- | ------ |
-| person_visible |  0.4   |
-| person_full    |  0.4   |
-| person_head    |  0.3   |
-| vehicle        |  0.4   |
+| Class          | Score | NMS   |
+| -------------- | ----- | ----- |
+| person_visible |  0.4  |  0.5  |
+| person_full    |  0.4  |  0.5  |
+| person_head    |  0.3  |  0.5  |
+| vehicle        |  0.4  |  0.5  |
 
 
 
