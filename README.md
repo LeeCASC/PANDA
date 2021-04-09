@@ -25,9 +25,9 @@
 
 第一个**配置文件** `./user_data/configs/reppoints/reppoints_moment_x101_fpn_dconv_c3-c5_gn-neck+head_2x_coco.py`。
 
-我们一次只训练一个类别，对于`person_visible`, `person_full`, `person_head`, `vehicle`分别训练四个分类器。
+第二个**配置文件** `./user_data/configs/_base_/datasets/coco_detection.py`。
 
-第二个**配置文件** `./user_data/configs/_base_/datasets/coco_detection.py`，配置文件如下所示：
+我们一次只训练一个类别，对于`person_visible`, `person_full`, `person_head`, `vehicle`分别训练四个分类器。
 
 第三个**配置文件** `./user_data/configs/_base_/default_runtime.py`，将**load_from**设置为`'./user_data/checkpoints/reppoints_moment_x101_fpn_dconv_c3-c5_gn-neck+head_2x_coco_20200329-f87da1ea.pth`。
 
@@ -60,6 +60,8 @@ bash ./code/train.sh --configs ./user_data/configs/reppoints/reppoints_moment_x1
 3. 将缩放后的图像裁剪为(2048,1024)输入模型。
 4. 使用Multi-scale进行训练，将输入图像在线resize为(1333, 480)和(1333, 960)。
 5. 添加图像増广方法，随机更改亮度、对比度和滤波处理。
+6. 学习率设置请查看`./user_data/configs/_base_/schedules/schedule_1x.py`。
+7. 训练时使用两块2080TI，批量大小设置为6/gpu。
 
 # 测试和推理
 测试图像，可以运行：
