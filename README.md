@@ -58,12 +58,22 @@ bash ./code/train.sh --configs ./user_data/configs/reppoints/reppoints_moment_x1
 | vehicle        |  0.3  |
 
 3. 将缩放后的图像裁剪为(2048,1024)输入模型。
-4. 使用Multi-scale进行训练。
+4. 使用Multi-scale进行训练，将输入图像在线resize为(1333, 480)和(1333, 960)。
+5. 添加图像増广方法，随机更改亮度、对比度和滤波处理。
 
 # 测试和推理
 测试图像，可以运行：
 ```shell
-python test.py
+bash ./code/run.sh
+```
+or
+```shell
+python ./code/test.py --source 
+                      --config
+                      --checkpoint
+                      --out
+                      --gpu-id
+                      --tmpdir
 ```
 
 **NOTE**
@@ -81,10 +91,10 @@ python test.py
 
 | Class          | Score | NMS   |
 | -------------- | ----- | ----- |
-| person_visible |  0.4  |  0.5  |
-| person_full    |  0.4  |  0.5  |
-| person_head    |  0.3  |  0.5  |
-| vehicle        |  0.4  |  0.5  |
+| person_visible |  0.4  |  0.3  |
+| person_full    |  0.4  |  0.3  |
+| person_head    |  0.3  |  0.3  |
+| vehicle        |  0.4  |  0.3  |
 
 
 
@@ -92,15 +102,10 @@ python test.py
 
 | Matrices                | Details                                           | Score |
 | ----------------------- | ------------------------------------------------- | ----- |
-| Average Precision  (AP) | @[ IoU=0.50:0.95 \| area =  all \| maxDets=500 ]  | 0.312 |
-| Average Precision  (AP) | @[ IoU=0.50    \| area =  all \| maxDets=500 ]    | 0.482 |
-| Average Precision  (AP) | @[ IoU=0.75    \| area =  all \| maxDets=500 ]    | 0.352 |
-| Average Precision  (AP) | @[ IoU=0.50:0.95 \| area = small \| maxDets=500 ] | 0.203 |
-| Average Precision  (AP) | @[ IoU=0.50:0.95 \| area =medium \| maxDets=500 ] | 0.376 |
-| Average Precision  (AP) | @[ IoU=0.50:0.95 \| area = large \| maxDets=500 ] | 0.352 |
-| Average Recall   (AR)   | @[ IoU=0.50:0.95 \| area =  all \| maxDets= 10 ]  | 0.061 |
-| Average Recall   (AR)   | @[ IoU=0.50:0.95 \| area =  all \| maxDets=100 ]  | 0.266 |
-| Average Recall   (AR)   | @[ IoU=0.50:0.95 \| area =  all \| maxDets=500 ]  | 0.347 |
-| Average Recall   (AR)   | @[ IoU=0.50:0.95 \| area = small \| maxDets=500 ] | 0.229 |
-| Average Recall   (AR)   | @[ IoU=0.50:0.95 \| area =medium \| maxDets=500 ] | 0.413 |
-| Average Recall   (AR)   | @[ IoU=0.50:0.95 \| area = large \| maxDets=500 ] | 0.379 |
+| Score                   |                                                   | 0.458 |
+| Average Precision  (AP) | @[ IoU=0.50:0.95 \| area =  all \| maxDets=500 ]  | 0.427 |
+| Average Precision  (AP) | @[ IoU=0.50    \| area =  all \| maxDets=500 ]    | 0.675 |
+| Average Precision  (AP) | @[ IoU=0.75    \| area =  all \| maxDets=500 ]    | 0.461 |
+| Average Recall   (AR)   | @[ IoU=0.50:0.95 \| area =  all \| maxDets= 10 ]  | 0.068 |
+| Average Recall   (AR)   | @[ IoU=0.50:0.95 \| area =  all \| maxDets=100 ]  | 0.331 |
+| Average Recall   (AR)   | @[ IoU=0.50:0.95 \| area =  all \| maxDets=500 ]  | 0.494 |
