@@ -23,21 +23,13 @@
 ## 准备mmDetection配置文件
 准备配置文件保证模型可以成功读取数据集。
 
-第一个**配置文件** `configs/_base_/models/faster_rcnn_r50_fpn.py`，配置文件如下所示：
-
-```python
-
-```
+第一个**配置文件** `./user_data/configs/reppoints/reppoints_moment_x101_fpn_dconv_c3-c5_gn-neck+head_2x_coco.py`。
 
 我们一次只训练一个类别，对于`person_visible`, `person_full`, `person_head`, `vehicle`分别训练四个分类器。
 
-第二个**配置文件** `configs/_base_/datasets/coco_detection.py`，配置文件如下所示：
+第二个**配置文件** `./user_data/configs/_base_/datasets/coco_detection.py`，配置文件如下所示：
 
-```python
-
-```
-
-第三个**配置文件** `configs/_base_/default_runtime.py`，将**load_from**设置为`'./checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth'`。
+第三个**配置文件** `./user_data/configs/_base_/default_runtime.py`，将**load_from**设置为`'./user_data/checkpoints/reppoints_moment_x101_fpn_dconv_c3-c5_gn-neck+head_2x_coco_20200329-f87da1ea.pth`。
 
 ## 下载COCO预训练模型
 下载[RepPoints的COCO预训练模型](https://github.com/open-mmlab/mmdetection/tree/master/configs/reppoints)。
@@ -46,7 +38,7 @@
 使用多gpu进行训练，可以运行：
 
 ```shell
-python train.py configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py [optional arguments]
+bash ./code/train.sh --configs ./user_data/configs/reppoints/reppoints_moment_x101_fpn_dconv_c3-c5_gn-neck+head_2x_coco.py 2
 ```
 
 ## Tricks
